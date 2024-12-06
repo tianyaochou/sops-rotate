@@ -1,0 +1,35 @@
+keys:
+  - &tianyaochou 2563EC8D8124B3B1B74FB4102376067C5BEDC26B
+  - &workstation age1s7j3r738qaq85qdyep85k5hqk35yqqre575tj5syju06drjaq98qzh62xf
+  - &gateway age1scpeh5ff24ghc2xe7vy4ldrrtjhy7zek54dd82l46fu9w80tfdpsnvc458
+  - &mainframe age1m60khn2lp2jdcxfnhqslfd4lzeq0waze7whej9ttrd5dw7vn3g0q8saf3k
+  - &kaelder age1afaxwpkqkcsd6x2pqk63dxnfh645p5rlh8ldvqvay8wk0a6mwpeqcsuu9k
+creation_rules:
+  - path_regex: hosts/profiles/minio/secrets\.yaml
+    key_groups:
+    - age:
+      - *mainframe
+      pgp:
+      - *tianyaochou
+  - path_regex: home\-manager/profiles/restic/secrets\.yaml
+    key_groups:
+    - pgp:
+      - *tianyaochou
+  - path_regex: hosts/profiles/miniflux/secrets\.yaml
+    key_groups:
+    - age:
+      - *gateway
+      pgp:
+      - *tianyaochou
+  - path_regex: hosts/profiles/proxy/config\.yaml
+    key_groups:
+      - age:
+        - *mainframe
+        pgp:
+        - *tianyaochou
+  - path_regex: hosts/nixos/kaelder/secrets\.yaml
+    key_groups:
+      - age:
+        - *kaelder
+        pgp:
+        - *tianyaochou
